@@ -39,14 +39,6 @@
 		},
 		set firstRun(val) {
 			localStorage['first_run'] = val;
-		},
-		get contextMenu() {
-			var key = localStorage['context_menu'];
-			return (typeof key == 'undefined') ? true : key === 'true';
-		},
-		set contextMenu(val) {
-			localStorage['context_menu'] = val;
-			setContextMenuVisible(val);
 		}
 	}
 
@@ -116,24 +108,6 @@
 	}
 
 	/**
-	* Handles the request coming back from an external extension.
-	* @param request The request that the extension is passing.
-	* @parma response The response that will be sent back.
-	*/
-	function setContextMenuVisible(visible) {
-		chrome.contextMenus.removeAll();
-		if (visible) {
-			var contextMenuProperty = {
-				type: 'normal',
-				title: 'Reload all tabs',
-				contexts: ['all'],
-				onclick: reload
-			};
-			chrome.contextMenus.create(contextMenuProperty);
-		}
-	}
-
-	/**
 		* When the extension first installed. We need to update all windows with
 		* the content script.
 		*/
@@ -183,9 +157,6 @@
 				handleRequest(request, response);
 			}
 		);
-
-		// Initialize the context menu.
-		setContextMenuVisible(settings.contextMenu);
 	}
 
 	// Lets initialize the Reloader script.
