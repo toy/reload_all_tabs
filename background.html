@@ -51,8 +51,9 @@
 		chrome.tabs.getAllInWindow(win.id, function reloadTabs(tabs) {
 			// For each tab in the current window, refresh it.
 			for (var i in tabs) {
-				var tab = tabs[i];
-				chrome.tabs.update(tab.id, {url: tab.url, selected: tab.selected}, null);
+				setTimeout(function(tab){
+					chrome.tabs.update(tab.id, {url: tab.url, selected: tab.selected}, null);
+				}, i * 100, tabs[i])
 			}
 		});
 	}
