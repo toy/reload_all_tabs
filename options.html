@@ -11,117 +11,117 @@ var bkg = chrome.extension.getBackgroundPage();
 * Saves options to localStorage.
 */
 function saveOptions() {
-  // Set the extension settings.
-  bkg.settings.reloadAllWindows = document.getElementById('reloadAllWindows').checked;
-  bkg.settings.shortcutKeyShift = document.getElementById('shortcutKeyShift').checked;
-  bkg.settings.shortcutKeyAlt = document.getElementById('shortcutKeyAlt').checked;
-  bkg.settings.shortcutKeyCode = parseInt(document.getElementById('shortcutKeyCode').value);
-  bkg.settings.contextMenu = document.getElementById('contextMenu').checked;
+	// Set the extension settings.
+	bkg.settings.reloadAllWindows = document.getElementById('reloadAllWindows').checked;
+	bkg.settings.shortcutKeyShift = document.getElementById('shortcutKeyShift').checked;
+	bkg.settings.shortcutKeyAlt = document.getElementById('shortcutKeyAlt').checked;
+	bkg.settings.shortcutKeyCode = parseInt(document.getElementById('shortcutKeyCode').value);
+	bkg.settings.contextMenu = document.getElementById('contextMenu').checked;
 
-  // Update status to let user know options were saved.
-  var info = document.getElementById('info-message');
-  info.style.display = 'inline';
-  info.style.opacity = 1;
-  setTimeout(function() {
-    info.style.opacity = 0.0;
-  }, 1000);
+	// Update status to let user know options were saved.
+	var info = document.getElementById('info-message');
+	info.style.display = 'inline';
+	info.style.opacity = 1;
+	setTimeout(function() {
+		info.style.opacity = 0.0;
+	}, 1000);
 }
 
 /**
 * Restore all options.
 */
 function restoreOptions() {
-  document.getElementById('version').innerHTML = ' (v' + bkg.settings.version + ')';
-  document.getElementById('reloadAllWindows').checked = bkg.settings.reloadAllWindows;
-  document.getElementById('shortcutKeyShift').checked = bkg.settings.shortcutKeyShift;
-  document.getElementById('shortcutKeyAlt').checked = bkg.settings.shortcutKeyAlt;
-  document.getElementById('shortcutKeyCode').value = bkg.settings.shortcutKeyCode;
-  document.getElementById('contextMenu').checked = bkg.settings.contextMenu;
+	document.getElementById('version').innerHTML = ' (v' + bkg.settings.version + ')';
+	document.getElementById('reloadAllWindows').checked = bkg.settings.reloadAllWindows;
+	document.getElementById('shortcutKeyShift').checked = bkg.settings.shortcutKeyShift;
+	document.getElementById('shortcutKeyAlt').checked = bkg.settings.shortcutKeyAlt;
+	document.getElementById('shortcutKeyCode').value = bkg.settings.shortcutKeyCode;
+	document.getElementById('contextMenu').checked = bkg.settings.contextMenu;
 }
 
 /**
 * Visit the Icon Extension Page.
 */
 function visitIconExtensionPage() {
-  var link = "https://chrome.google.com/extensions/detail/" + bkg.settings.icon_id;
-  chrome.tabs.create({url: link});
+	var link = "https://chrome.google.com/extensions/detail/" + bkg.settings.icon_id;
+	chrome.tabs.create({url: link});
 }
 
 </script>
 </head>
 
-<body onload="restoreOptions()"> 
-  <form onsubmit="return false;">
-  <div id="body-container">
-    <div id="header">
-      <h1>Reload All Tabs <em id="version"></em></h1>
-    </div>
-    <div class="extension-template">
-      <div class="extension-header">Browser Action</div>
-      <div class="extension-options">
-        <img src="browser-action.png" />
-        <p>To show the Reload All Tabs button next to the address bar you would need to click <strong>Install</strong>
-           on the <a href="#" onclick="visitIconExtensionPage(); return false;">Reload All Tabs - Browser Action</a>
-           page. This is a very light weight extension that just communicates to the other extension.</p>
-        <p>To remove the button, right click on the icon and choose <strong>Disable</strong>.</p>
-      </div>
-    </div>
-    <div class="extension-template">
-      <div class="extension-header">Main Options</div>
-      <div class="extension-options">
-        <dl>
-          <dt>Enable context menu:</dt>
-          <dd><input id="contextMenu" type="checkbox" /></dd>
-          <dt>Reload all windows:</dt>
-          <dd><input id="reloadAllWindows" type="checkbox" /></dd>
-          <dt>Keyboard shortcut:</dt>
-          <dd>
-            Ctrl <input type="checkbox" checked="checked" disabled="disabled"/> + 
-            Shift <input id="shortcutKeyShift" type="checkbox" /> +
-            Alt <input id="shortcutKeyAlt" type="checkbox" /> +
-            <select id="shortcutKeyCode">
-              <option value="65">a</option>
-              <option value="66">b</option>
-              <option value="67">c</option>
-              <option value="68">d</option>
-              <option value="69">e</option>
-              <option value="70">f</option>
-              <option value="71">g</option>
-              <option value="72">h</option>
-              <option value="73">i</option>
-              <option value="74">j</option>
-              <option value="75">k</option>
-              <option value="76">l</option>
-              <option value="77">m</option>
-              <option value="78">n</option>
-              <option value="79">o</option>
-              <option value="80">p</option>
-              <option value="81">q</option>
-              <option value="82">r</option>
-              <option value="83">s</option>
-              <option value="84">t</option>
-              <option value="85">u</option>
-              <option value="86">v</option>
-              <option value="87">w</option>
-              <option value="88">x</option>
-              <option value="89">y</option>
-              <option value="90">z</option>
-            </select>
-          </dd>
-        </dl>
-      </div>
-    </div>
-    <div id="extension-footer">
-      <span id="info-message">Options saved!</span>
-      <button onclick="saveOptions();">Save</button>
-      <button onclick="window.close();">Close</button>
-    </div>
-    <div id="credits">
-      Extension developed by <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>, 
-      Source Code available in <a href="http://github.com/mohamedmansour/reload-all-tabs-extension">GitHub</a>,
-      Icon by <a href="http://www.mouserunner.net/">Ken Saunders</a>
-    </div>
-  </div>
-  </form>
+<body onload="restoreOptions()">
+	<form onsubmit="return false;">
+	<div id="body-container">
+		<div id="header">
+			<h1>Reload All Tabs <em id="version"></em></h1>
+		</div>
+		<div class="extension-template">
+			<div class="extension-header">Browser Action</div>
+			<div class="extension-options">
+				<img src="browser-action.png" />
+				<p>To show the Reload All Tabs button next to the address bar you would need to click <strong>Install</strong>
+						on the <a href="#" onclick="visitIconExtensionPage(); return false;">Reload All Tabs - Browser Action</a>
+						page. This is a very light weight extension that just communicates to the other extension.</p>
+				<p>To remove the button, right click on the icon and choose <strong>Disable</strong>.</p>
+			</div>
+		</div>
+		<div class="extension-template">
+			<div class="extension-header">Main Options</div>
+			<div class="extension-options">
+				<dl>
+					<dt>Enable context menu:</dt>
+					<dd><input id="contextMenu" type="checkbox" /></dd>
+					<dt>Reload all windows:</dt>
+					<dd><input id="reloadAllWindows" type="checkbox" /></dd>
+					<dt>Keyboard shortcut:</dt>
+					<dd>
+						Ctrl <input type="checkbox" checked="checked" disabled="disabled"/> +
+						Shift <input id="shortcutKeyShift" type="checkbox" /> +
+						Alt <input id="shortcutKeyAlt" type="checkbox" /> +
+						<select id="shortcutKeyCode">
+							<option value="65">a</option>
+							<option value="66">b</option>
+							<option value="67">c</option>
+							<option value="68">d</option>
+							<option value="69">e</option>
+							<option value="70">f</option>
+							<option value="71">g</option>
+							<option value="72">h</option>
+							<option value="73">i</option>
+							<option value="74">j</option>
+							<option value="75">k</option>
+							<option value="76">l</option>
+							<option value="77">m</option>
+							<option value="78">n</option>
+							<option value="79">o</option>
+							<option value="80">p</option>
+							<option value="81">q</option>
+							<option value="82">r</option>
+							<option value="83">s</option>
+							<option value="84">t</option>
+							<option value="85">u</option>
+							<option value="86">v</option>
+							<option value="87">w</option>
+							<option value="88">x</option>
+							<option value="89">y</option>
+							<option value="90">z</option>
+						</select>
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div id="extension-footer">
+			<span id="info-message">Options saved!</span>
+			<button onclick="saveOptions();">Save</button>
+			<button onclick="window.close();">Close</button>
+		</div>
+		<div id="credits">
+			Extension developed by <a href="http://www.mohamedmansour.com">Mohamed Mansour</a>,
+			Source Code available in <a href="http://github.com/mohamedmansour/reload-all-tabs-extension">GitHub</a>,
+			Icon by <a href="http://www.mouserunner.net/">Ken Saunders</a>
+		</div>
+	</div>
+	</form>
 </body>
 </html>

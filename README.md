@@ -2,7 +2,7 @@ Reload all tabs Extension
 =================================
 
 This Google Chrome extension reloads or refreshes all tabs (or windows if
-specified) by using the default quick keyboard shortcut (ctrl+shift+r). As well, 
+specified) by using the default quick keyboard shortcut (ctrl+shift+r). As well,
 an addon for this extension to havea refresh button on the toolbar for users who
 want browser actions. As a bonus, it consists a context menu to reload all tabs.
 
