@@ -7,12 +7,6 @@
 		get icon_id() {
 			return 'bfenodnbilondijnaionekngdhadmegk';
 		},
-		get reloadAllWindows() {
-			return localStorage['reload_all_windows'] === 'true';
-		},
-		set reloadAllWindows(val) {
-			localStorage['reload_all_windows'] = val;
-		},
 		get shortcutKeyCode() {
 			var key = localStorage['shortcut_key_code'];
 			return (typeof key == 'undefined') ? 82 : key;
@@ -72,24 +66,11 @@
 	}
 
 	/**
-	* Reload all tabs in all windows one by one.
-	*/
-	function reloadAllWindows() {
-		chrome.windows.getAll({}, function(windows) {
-			for (var i in windows)
-				reloadWindow(windows[i]);
-		});
-	}
-
-	/**
 	* Initiate a main reload. This will take into account of the options set
 	* by the user.
 	*/
 	function reload() {
-		if (settings.reloadAllWindows)
-			reloadAllWindows();
-		else
-			chrome.windows.getCurrent(reloadWindow);
+		chrome.windows.getCurrent(reloadWindow);
 	}
 
 	/**
